@@ -17,7 +17,7 @@ export interface ApartmentApiResponse {
   response: {
     header: { resultCode: string; resultMsg: string };
     body: {
-      items: { item: ApartmentTransactionRaw | ApartmentTransactionRaw[] } | '';
+      items: { item: ApartmentTransactionRaw | ApartmentTransactionRaw[] } | string;
       numOfRows: number;
       pageNo: number;
       totalCount: number;

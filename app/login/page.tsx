@@ -5,11 +5,13 @@ export const metadata = {
   title: '로그인',
 };
 
-export default function LoginPage({
+export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: { error?: string };
+  searchParams: Promise<{ error?: string }>;
 }) {
+  const { error } = await searchParams;
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-8 gap-6 bg-gray-50">
       <div className="bg-white rounded-xl shadow-md p-10 flex flex-col items-center gap-6 w-full max-w-sm">
@@ -18,7 +20,7 @@ export default function LoginPage({
           서비스를 이용하려면 Google 계정으로 로그인하세요.
         </p>
 
-        {searchParams.error && (
+        {error && (
           <div className="w-full bg-red-50 border border-red-200 rounded-md px-4 py-3 text-sm text-red-600 text-center">
             로그인에 실패했습니다. 접근 권한이 없거나 승인되지 않은 계정입니다.
           </div>
