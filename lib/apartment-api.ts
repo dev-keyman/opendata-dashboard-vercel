@@ -1,7 +1,7 @@
 import type { ApartmentApiResponse, ApartmentRecord } from '@/types/apartment';
 
 const BASE_URL =
-  'https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev';
+  'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade';
 
 export interface ApartmentSearchParams {
   LAWD_CD: string;    // 법정동 코드 앞 5자리
