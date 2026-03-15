@@ -30,7 +30,7 @@ export default async function LoginPage({
           className="w-full"
           action={async () => {
             'use server';
-            await signIn('google', { redirectTo: '/dashboard' });
+            await signIn('google', { redirectTo: '/' });
           }}
         >
           <Button type="submit" size="lg" className="w-full flex items-center justify-center gap-2">
