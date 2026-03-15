@@ -19,6 +19,9 @@ export default async function LoginPage({
         <p className="text-sm text-gray-500 text-center">
           서비스를 이용하려면 Google 계정으로 로그인하세요.
         </p>
+        <div className="w-full bg-blue-50 border border-blue-100 rounded-md px-4 py-3 text-sm text-blue-600 text-center">
+          처음 로그인하시면 자동으로 회원가입이 완료됩니다.
+        </div>
 
         {error && (
           <div className="w-full bg-red-50 border border-red-200 rounded-md px-4 py-3 text-sm text-red-600 text-center">
