@@ -5,15 +5,6 @@ interface DataTableProps {
   records: ApartmentRecord[];
 }
 
-const headers = [
-  '아파트명',
-  '법정동',
-  '거래일',
-  '전용면적(m²)',
-  '층',
-  '거래금액(만원)',
-];
-
 export default function DataTable({ records }: DataTableProps) {
   if (records.length === 0) {
     return (
@@ -28,27 +19,23 @@ export default function DataTable({ records }: DataTableProps) {
       <table className="min-w-full divide-y divide-gray-200 text-sm">
         <thead className="bg-gray-50">
           <tr>
-            {headers.map((h) => (
-              <th
-                key={h}
-                className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap"
-              >
-                {h}
-              </th>
-            ))}
+            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">법정동</th>
+            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">단지명</th>
+            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">전용면적(㎡)</th>
+            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">거래금액(만원)</th>
+            <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">건축년도</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-100">
           {records.map((r, i) => (
             <tr key={i} className="hover:bg-gray-50 transition-colors">
-              <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">{r.name}</td>
-              <td className="px-4 py-3 text-gray-600">{r.dong}</td>
-              <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{r.date}</td>
-              <td className="px-4 py-3 text-gray-600 text-right">{r.area}</td>
-              <td className="px-4 py-3 text-gray-600 text-center">{r.floor}</td>
+              <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{r.umdNm}</td>
+              <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">{r.aptNm}</td>
+              <td className="px-4 py-3 text-gray-600 text-right">{r.excluUseAr}</td>
               <td className="px-4 py-3 font-semibold text-primary-500 text-right whitespace-nowrap">
-                {formatNumber(r.price)}
+                {formatNumber(r.dealAmount)}
               </td>
+              <td className="px-4 py-3 text-gray-600 text-center">{r.buildYear}</td>
             </tr>
           ))}
         </tbody>

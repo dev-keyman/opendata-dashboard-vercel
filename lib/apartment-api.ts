@@ -26,7 +26,7 @@ export async function fetchApartmentTransactions(
   });
 
   const res = await fetch(`${BASE_URL}?${searchParams.toString()}`, {
-    next: { revalidate: 3600 }, // 1시간 캐시
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) throw new Error(`API 요청 실패: ${res.status} ${res.statusText}`);
@@ -42,12 +42,10 @@ export async function fetchApartmentTransactions(
   const list = Array.isArray(rawItems) ? rawItems : rawItems ? [rawItems] : [];
 
   return list.map((item) => ({
-    name: item.아파트,
-    dong: item.법정동.trim(),
-    date: `${item.년}-${String(item.월).padStart(2, '0')}-${String(item.일).padStart(2, '0')}`,
-    price: parseInt(item.거래금액.replace(/,/g, ''), 10),
-    area: parseFloat(item.전용면적),
-    floor: parseInt(item.층, 10),
-    builtYear: parseInt(item.건축년도, 10),
+    aptNm: item.aptNm?.trim() ?? '',
+    umdNm: item.umdNm?.trim() ?? '',
+    dealAmount: parseInt(item.dealAmount.replace(/,/g, '').trim(), 10),
+    excluUseAr: parseFloat(item.excluUseAr),
+    buildYear: parseInt(item.buildYear, 10),
   }));
 }
