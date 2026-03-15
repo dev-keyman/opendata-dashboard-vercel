@@ -21,3 +21,11 @@ export interface PaginatedResponse<T> {
   data: T[];
   pagination: Pagination;
 }
+
+export interface GuestbookPost {
+  id: number;
+  author_email: string;
+  author_name: string;
+  content: string;
+  created_at: string;
+}

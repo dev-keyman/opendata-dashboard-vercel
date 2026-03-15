@@ -4,6 +4,7 @@ import { auth, signOut } from '@/auth';
 const navItems = [
   { label: '홈', href: '/' },
   { label: '대시보드', href: '/dashboard' },
+  { label: '방명록', href: '/dashboard/guestbook' },
 ];
 
 export default async function Header() {

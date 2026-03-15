@@ -8,3 +8,11 @@ export async function isUserAllowed(email: string): Promise<boolean> {
   });
   return result.rows.length > 0;
 }
+
+export async function autoRegisterUser(email: string, name: string): Promise<void> {
+  const db = getDb();
+  await db.execute({
+    sql: 'INSERT OR IGNORE INTO allowed_users (email, name) VALUES (?, ?)',
+    args: [email, name],
+  });
+}
