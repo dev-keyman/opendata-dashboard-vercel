@@ -9,9 +9,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (!user.email) return false;
       const { isUserAllowed, autoRegisterUser } = await import('./lib/auth-utils');
       if (await isUserAllowed(user.email)) return true;
-      // 신규 사용자: 자동 등록 후 환영 페이지로 이동
+      // 신규 사용자: 자동 등록 (first_login=1 설정)
       await autoRegisterUser(user.email, user.name ?? '');
-      return '/welcome';
+      return true;
     },
     async jwt({ token, user }) {
       if (user) {
