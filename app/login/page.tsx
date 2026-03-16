@@ -15,7 +15,7 @@ export default async function LoginPage({
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-8 gap-6 bg-gray-50">
       <div className="bg-white rounded-xl shadow-md p-10 flex flex-col items-center gap-6 w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-gray-900">공공데이터 대시보드</h1>
+        <h1 className="text-2xl font-bold text-gray-900 text-center">서울 아파트 매매 실거래가 대시보드</h1>
         <p className="text-sm text-gray-500 text-center">
           서비스를 이용하려면 Google 계정으로 로그인하세요.
         </p>
