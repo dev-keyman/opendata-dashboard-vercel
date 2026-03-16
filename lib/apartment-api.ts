@@ -47,7 +47,7 @@ export async function fetchApartmentTransactions(
   }
 
   const { resultCode, resultMsg } = data.response.header;
-  if (resultCode !== '00') throw new Error(`공공데이터 API 오류 [${resultCode}]: ${resultMsg}`);
+  if (resultCode !== '00' && resultCode !== '000') throw new Error(`공공데이터 API 오류 [${resultCode}]: ${resultMsg}`);
 
   const body = data.response.body;
   if (!body.items || typeof body.items === 'string') return [];
