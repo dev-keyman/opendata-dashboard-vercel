@@ -31,9 +31,23 @@ export async function fetchApartmentTransactions(
 
   if (!res.ok) throw new Error(`API 요청 실패: ${res.status} ${res.statusText}`);
 
-  const data: ApartmentApiResponse = await res.json();
+  const contentType = res.headers.get('content-type') ?? '';
+  const text = await res.text();
+
+  if (!contentType.includes('json') && !text.trimStart().startsWith('{')) {
+    // XML 또는 예외 응답 수신 시 원문 일부를 에러에 포함
+    throw new Error(`API가 JSON이 아닌 응답을 반환했습니다. (응답 일부: ${text.slice(0, 200)})`);
+  }
+
+  let data: ApartmentApiResponse;
+  try {
+    data = JSON.parse(text) as ApartmentApiResponse;
+  } catch {
+    throw new Error(`JSON 파싱 실패 (응답 일부: ${text.slice(0, 200)})`);
+  }
+
   const { resultCode, resultMsg } = data.response.header;
-  if (resultCode !== '00') throw new Error(`공공데이터 API 오류: ${resultMsg}`);
+  if (resultCode !== '00') throw new Error(`공공데이터 API 오류 [${resultCode}]: ${resultMsg}`);
 
   const body = data.response.body;
   if (!body.items || typeof body.items === 'string') return [];
