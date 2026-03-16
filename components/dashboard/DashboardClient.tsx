@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import SearchForm, { type SearchFormValues } from '@/components/dashboard/SearchForm';
 import DataTable from '@/components/dashboard/DataTable';
 import StatsPanel from '@/components/dashboard/StatsPanel';
@@ -38,6 +38,13 @@ export default function DashboardClient({ guList }: DashboardClientProps) {
     } finally {
       setIsLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    const now = new Date();
+    const defaultYM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
+    handleSearch({ LAWD_CD: guList[0]?.code ?? '11110', DEAL_YMD: defaultYM });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
